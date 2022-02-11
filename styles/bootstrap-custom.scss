@@ -1,0 +1,29 @@
+// bootstrap-custom.scss
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "~bootstrap/scss/_functions.scss";
+
+// 2. Include any default variable overrides here
+$font-family-sans-serif: "Jost", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+  Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol", "Noto Color Emoji";
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/_mixins.scss";
+@import "~bootstrap/scss/_root.scss";
+
+// 4. Include any optional Bootstrap CSS as needed
+@import "~bootstrap/scss/_utilities.scss";
+@import "~bootstrap/scss/_reboot.scss";
+@import "~bootstrap/scss/_type.scss";
+@import "~bootstrap/scss/_images.scss";
+@import "~bootstrap/scss/_containers.scss";
+@import "~bootstrap/scss/_grid.scss";
+@import "~bootstrap/scss/_helpers.scss";
+@import "~bootstrap/scss/_alert.scss";
+
+// 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import "~bootstrap/scss/utilities/_api.scss";
+
+// 6. Add additional custom code here
