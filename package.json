@@ -2,7 +2,7 @@
   "name": "pokemon",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "PORT=5800 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
