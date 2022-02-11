@@ -1,0 +1,11 @@
+{
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabCompletion": "on",
+  "editor.formatOnSave": true,
+  "editor.wordWrapColumn": 100,
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.detectIndentation": false,
+  "prettier.trailingComma": "all",
+  "prettier.printWidth": 100
+}
