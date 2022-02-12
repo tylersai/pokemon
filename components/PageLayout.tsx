@@ -1,23 +1,24 @@
-import classNames from "classnames";
 import { FC } from "react";
-import { CommonHead } from "./";
+import { CommonHead, Navbar, Footer } from "./";
 
-interface PageLayoutProp {
-  CommonHeadComp?: React.ReactNode;
+interface PageLayoutProps {
+  CommonHeadComp?: React.ReactElement;
   hideHeader?: boolean;
   hideFooter?: boolean;
-  className?: string;
 }
 
-export const PageLayout: FC<PageLayoutProp> = ({
-  className,
+export const PageLayout: FC<PageLayoutProps> = ({
   CommonHeadComp = <CommonHead />,
   children,
+  hideHeader,
+  hideFooter,
 }) => {
   return (
-    <div className={classNames("PageLayout", className)}>
+    <div className="PageLayout">
       {CommonHeadComp}
-      <main className="container-fluid">{children}</main>
+      {!hideHeader && <Navbar />}
+      <main className="container-fluid d-flex flex-column align-items-stretch">{children}</main>
+      {!hideFooter && <Footer />}
     </div>
   );
 };
