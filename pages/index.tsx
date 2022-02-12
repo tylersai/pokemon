@@ -66,7 +66,7 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
       {!cardsError ? (
         cards && cards.length > 0 ? (
           <div className={styles.HomePage}>
-            <div className={classNames("row justify-content-evenly")}>
+            <div className={classNames("row justify-content-evenly px-lg-5")}>
               {cards.map((card: any) => (
                 <div
                   key={card.id}
