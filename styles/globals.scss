@@ -8,6 +8,12 @@ body {
   outline: none;
 }
 
+button.btn,
+a.btn,
+input {
+  box-shadow: none !important;
+}
+
 :root {
   --transition: all 180ms 50ms ease-out;
 }
