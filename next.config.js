@@ -4,6 +4,9 @@ const nextConfig = {
   experimental: {
     outputStandalone: true,
   },
+  images: {
+    domains: ["images.pokemontcg.io"],
+  },
 };
 
 module.exports = nextConfig;

@@ -1,0 +1,24 @@
+.PokemonCard {
+  position: relative;
+  &::before {
+    content: "";
+    display: block;
+    background-color: #fff;
+    border-radius: 16px;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: 18px;
+    height: 280px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.03);
+  }
+}
+
+.gapPT {
+  gap: 42px;
+}
+
+.cardBtn {
+  border-radius: 24px;
+}
