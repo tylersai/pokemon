@@ -47,6 +47,7 @@ const Home: NextPage<HomePageProps> = ({ data, error }) => {
                 className="col-11 col-sm-5 col-md-4 d-flex justify-content-center my-4"
               >
                 <PokemonCard
+                  className="my-2"
                   id={card.id}
                   image={card.images}
                   name={card.name}
