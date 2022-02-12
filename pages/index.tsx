@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { useState } from "react";
-import { PageLayout } from "../components";
+import { PageLayout, PokemonCard } from "../components";
 import styles from "../styles/Home.module.scss";
 
 const defPageSize = 12;
@@ -41,8 +41,18 @@ const Home: NextPage<HomePageProps> = ({ data, error }) => {
         cards && cards.length > 0 ? (
           <div className="row justify-content-evenly py-5">
             {cards.map((card: any) => (
-              <div key={card.id} className="col-11 col-sm-5 col-md-4">
-                <h4>{card.name}</h4>
+              <div
+                key={card.id}
+                className="col-11 col-sm-5 col-md-4 d-flex justify-content-center my-4"
+              >
+                <PokemonCard
+                  id={card.id}
+                  image={card.images}
+                  name={card.name}
+                  rarity={card.rarity}
+                  price={card.cardmarket.prices.averageSellPrice}
+                  total={card.set.total}
+                />
               </div>
             ))}
           </div>
