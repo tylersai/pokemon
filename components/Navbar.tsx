@@ -19,7 +19,7 @@ export const Navbar: FC = () => {
             "position-absolute d-flex bg-white align-items-center justify-content-center p-3",
           )}
         >
-          <Image src="/pokemon.png" alt="Logo" role="img" width={42} height={42} />
+          <Image src="/pokemon.png" alt="Logo" width={42} height={42} />
         </div>
       </div>
     </header>
