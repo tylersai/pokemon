@@ -8,6 +8,9 @@ $font-family-sans-serif: "Space Grotesk", system-ui, -apple-system, "Segoe UI", 
   "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji",
   "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+// $primary: #fd7e14;
+$primary: #ffc107;
+
 // 3. Include remainder of required Bootstrap stylesheets
 @import "~bootstrap/scss/_variables.scss";
 @import "~bootstrap/scss/_mixins.scss";
@@ -22,6 +25,9 @@ $font-family-sans-serif: "Space Grotesk", system-ui, -apple-system, "Segoe UI", 
 @import "~bootstrap/scss/_grid.scss";
 @import "~bootstrap/scss/_helpers.scss";
 @import "~bootstrap/scss/_alert.scss";
+@import "~bootstrap/scss/_forms.scss";
+@import "~bootstrap/scss/_buttons.scss";
+@import "~bootstrap/scss/_card.scss";
 
 // 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 @import "~bootstrap/scss/utilities/_api.scss";
