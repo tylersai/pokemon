@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import classNames from "classnames";
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { useState } from "react";
 import { PageLayout, PokemonCard } from "../components";
@@ -36,10 +37,10 @@ const Home: NextPage<HomePageProps> = ({ data, error }) => {
   const [cardsError, setCardsError] = useState<AxiosResponse | undefined>(error);
 
   return (
-    <PageLayout>
+    <PageLayout hideFooter={Boolean(cardsError)}>
       {!cardsError ? (
         cards && cards.length > 0 ? (
-          <div className="row justify-content-evenly py-5">
+          <div className={classNames(styles.HomePage, "row justify-content-evenly")}>
             {cards.map((card: any) => (
               <div
                 key={card.id}
@@ -57,14 +58,14 @@ const Home: NextPage<HomePageProps> = ({ data, error }) => {
             ))}
           </div>
         ) : (
-          <div className="row justify-content-center py-5">
+          <div className={classNames(styles.HomePage, "row justify-content-center")}>
             <div className="col-10 col-sm-6 col-lg-4">
               <div className="alert alert-warning">No pokemon cards data</div>
             </div>
           </div>
         )
       ) : (
-        <div className="row justify-content-center py-5">
+        <div className={classNames(styles.HomePage, "row justify-content-center")}>
           <div className="col-10 col-sm-8 col-md-6 col-lg-4">
             <div className="alert alert-danger">
               Error! Unable to fetch pokemon cards data. Try again.
