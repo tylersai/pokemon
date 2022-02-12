@@ -12,6 +12,7 @@ export const Navbar: FC = () => {
       )}
     >
       <div className="d-flex flex-column align-items-center position-relative">
+        <h1 className="my-0">TCG Marketplace</h1>
         <div
           className={classNames(
             styles.logoWrapper,
@@ -20,7 +21,6 @@ export const Navbar: FC = () => {
         >
           <Image src="/pokemon.png" alt="Logo" role="img" width={42} height={42} />
         </div>
-        <h1 className="my-0">TCG Marketplace</h1>
       </div>
     </header>
   );
