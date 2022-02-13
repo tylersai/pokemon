@@ -13,8 +13,12 @@ export const Cart: FC = () => {
         styles.cartOverlay,
         openCart ? "d-flex justify-content-center align-items-end" : "d-none",
       )}
+      onClick={() => setOpenCart(false)}
     >
-      <div className={classNames("bg-white d-flex flex-column position-relative", styles.Cart)}>
+      <div
+        className={classNames("bg-white d-flex flex-column position-relative", styles.Cart)}
+        onClick={(e) => e.stopPropagation()}
+      >
         {cartItems.map((card) => (
           <CartItem key={card.id} {...card} />
         ))}
