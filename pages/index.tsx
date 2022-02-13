@@ -3,7 +3,9 @@ import classNames from "classnames";
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import React, { MouseEventHandler, useCallback, useContext, useEffect, useState } from "react";
 import {
+  CardSetType,
   Cart,
+  Filter,
   OnSelectHandlerType,
   PageLayout,
   PokemonCard,
@@ -64,6 +66,11 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl, apiKey }) => {
   const [cards, setCards] = useState<any[] | undefined>(data);
   const [cardsError, setCardsError] = useState<AxiosResponse | undefined>(error);
 
+  const [name, setName] = useState("");
+  const [cardType, setCardType] = useState("");
+  const [cardSet, setCardSet] = useState<CardSetType>(null);
+  const [rarity, setRarity] = useState("");
+
   useEffect(() => {
     if (!isInit) {
       setLoading(true);
@@ -102,6 +109,18 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl, apiKey }) => {
       {!cardsError ? (
         cards && cards.length > 0 ? (
           <div className={classNames(styles.HomePage, styles.limitHeight)}>
+            <Filter
+              name={name}
+              setName={setName}
+              cardType={cardType}
+              setCardType={setCardType}
+              cardSet={cardSet}
+              setCardSet={setCardSet}
+              rarity={rarity}
+              setRarity={setRarity}
+              baseUrl={baseUrl}
+              apiKey={apiKey}
+            />
             <div className={classNames("row justify-content-evenly px-lg-5")}>
               {cards.map((card: any) => (
                 <div

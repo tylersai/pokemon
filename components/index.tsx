@@ -5,3 +5,4 @@ export * from "./Footer";
 export * from "./PokemonCard";
 export * from "./Cart";
 export * from "./CartItem";
+export * from "./Filter";
