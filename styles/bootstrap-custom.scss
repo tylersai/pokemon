@@ -27,8 +27,8 @@ $font-family-sans-serif: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto
 @import "~bootstrap/scss/_alert.scss";
 @import "~bootstrap/scss/_forms.scss";
 @import "~bootstrap/scss/_buttons.scss";
-@import "~bootstrap/scss/_card.scss";
 @import "~bootstrap/scss/_badge.scss";
+@import "~bootstrap/scss/_spinners.scss";
 
 // 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
 @import "~bootstrap/scss/utilities/_api.scss";

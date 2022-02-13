@@ -124,7 +124,14 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl, apiKey }) => {
             </div>
             <div className="d-flex justify-content-center">
               <button className="btn letter-spacing-1" onClick={loadMore} disabled={loading}>
-                <i className="bi bi-arrow-down me-2"></i>
+                {loading ? (
+                  <div
+                    className="spinner-grow text-secondary spinner-grow-sm me-2"
+                    role="status"
+                  ></div>
+                ) : (
+                  <i className="bi bi-arrow-down me-2"></i>
+                )}
                 {loading ? "Loading..." : "Load More"}
               </button>
             </div>
