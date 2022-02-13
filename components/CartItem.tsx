@@ -33,9 +33,9 @@ export const CartItem: FC<PokemonCardModel> = ({ id, name, image, price, count =
   const subTotal = useMemo(() => count * price, [count, price]);
 
   return (
-    <div className="d-flex align-items-start mt-2 mb-3">
-      <Image src={image.small} className="text-center" alt="Card Image" width={61} height={86} />
-      <div className="ps-3 flex-grow-1 align-self-stretch d-flex flex-column justify-content-between">
+    <div className={classNames(styles.CartItem, "d-flex align-items-start mt-2 mb-3")}>
+      <Image src={image.small} className="text-center" alt="Card Image" width={69} height={96} />
+      <div className="ps-3 pt-1 flex-grow-1 align-self-stretch d-flex flex-column justify-content-between">
         <div className="d-flex justify-content-between">
           <div>
             <h5 className="opacity-75 mb-0">{name}</h5>
@@ -63,8 +63,9 @@ export const CartItem: FC<PokemonCardModel> = ({ id, name, image, price, count =
           </div>
         </div>
         <div className="d-flex align-items-center justify-content-between">
-          <p className={classNames(styles.stockCount, "my-0 text-secondary opacity-75")}>
-            <span className="text-danger">{total}</span>&nbsp;&nbsp;cards left
+          <p className={classNames(styles.stockCount, "my-0")}>
+            <span className="text-danger opacity-75">{total}</span>&nbsp;&nbsp;
+            <span className="text-secondary opacity-50">cards left</span>
           </p>
           <p className="my-0 text-primary letter-spacing-1">{`$${formatMoney(subTotal)}`}</p>
         </div>

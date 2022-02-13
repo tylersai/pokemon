@@ -51,7 +51,7 @@ export const Cart: FC = () => {
           </button>
         </div>
         <div className="row justify-content-center py-2">
-          <div className="col-9">
+          <div className="col-8">
             <div className="d-flex justify-content-between align-items-center my-2">
               <h6 className="my-0 text-nowrap">Total Cards</h6>
               <h6 className="my-0 text-nowrap text-danger">{totalCount}</h6>
