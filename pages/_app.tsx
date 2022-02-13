@@ -7,9 +7,10 @@ import { PokemonCardModel } from "../components";
 
 const PokemonApp = ({ Component, pageProps }: AppProps) => {
   const [cartItems, setCartItems] = useState<PokemonCardModel[]>([]);
+  const [openCart, setOpenCart] = useState<boolean>(false);
 
   return (
-    <DataContext.Provider value={{ cartItems, setCartItems }}>
+    <DataContext.Provider value={{ cartItems, setCartItems, openCart, setOpenCart }}>
       <Component {...pageProps} />
     </DataContext.Provider>
   );
