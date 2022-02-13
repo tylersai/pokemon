@@ -19,10 +19,17 @@ export const Cart: FC = () => {
         className={classNames("bg-white d-flex flex-column position-relative", styles.Cart)}
         onClick={(e) => e.stopPropagation()}
       >
-        {cartItems.map((card) => (
-          <CartItem key={card.id} {...card} />
-        ))}
-        <div className="d-flex justify-content-center pt-3 pb-2">
+        <div className={classNames("d-flex flex-column", styles.cartItemsWrapper)}>
+          {cartItems.map((card) => (
+            <CartItem key={card.id} {...card} />
+          ))}
+        </div>
+        <div
+          className={classNames(
+            styles.clearAllBtnWrapper,
+            "d-flex justify-content-center pt-3 pb-2 position-relative",
+          )}
+        >
           <button
             className={classNames("text-danger", styles.clearAllBtn)}
             onClick={() => {
