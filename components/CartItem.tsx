@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import Image from "next/image";
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useMemo } from "react";
 import { PokemonCardModel } from ".";
 import { formatMoney } from "../utils/functions";
 import styles from "../styles/CartItem.module.scss";
@@ -30,10 +30,12 @@ export const CartItem: FC<PokemonCardModel> = ({ id, name, image, price, count =
     }
   };
 
+  const subTotal = useMemo(() => count * price, [count, price]);
+
   return (
-    <div className="d-flex align-items-start my-2">
+    <div className="d-flex align-items-start mt-2 mb-3">
       <Image src={image.small} className="text-center" alt="Card Image" width={61} height={86} />
-      <div className="ps-3 flex-grow-1 d-flex flex-column justify-content-between">
+      <div className="ps-3 flex-grow-1 align-self-stretch d-flex flex-column justify-content-between">
         <div className="d-flex justify-content-between">
           <div>
             <h5 className="opacity-75 mb-0">{name}</h5>
@@ -59,6 +61,12 @@ export const CartItem: FC<PokemonCardModel> = ({ id, name, image, price, count =
               </button>
             </div>
           </div>
+        </div>
+        <div className="d-flex align-items-center justify-content-between">
+          <p className={classNames(styles.stockCount, "my-0 text-secondary opacity-75")}>
+            <span className="text-danger">{total}</span>&nbsp;&nbsp;cards left
+          </p>
+          <p className="my-0 text-primary letter-spacing-1">{`$${formatMoney(subTotal)}`}</p>
         </div>
       </div>
     </div>
