@@ -47,6 +47,11 @@ export const Cart: FC = () => {
             </div>
           </div>
         </div>
+        <button
+          className={classNames(styles.payNowBtn, "btn btn-primary px-5 my-2 align-self-center")}
+        >
+          Pay Now
+        </button>
       </div>
     </div>
   );
