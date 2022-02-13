@@ -1,11 +1,21 @@
 import classNames from "classnames";
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useMemo } from "react";
 import { CartItem } from ".";
 import DataContext from "../context/DataContext";
 import styles from "../styles/Cart.module.scss";
+import { formatMoney } from "../utils/functions";
 
 export const Cart: FC = () => {
   const { openCart, setOpenCart, cartItems, setCartItems } = useContext(DataContext);
+
+  const totalCount = useMemo(() => {
+    return cartItems.reduce((tot, el) => tot + (el.count || 1), 0);
+  }, [cartItems]);
+
+  const totalPrice = useMemo(() => {
+    return cartItems.reduce((tot, el) => tot + el.price * (el.count || 1), 0);
+  }, [cartItems]);
+
   return (
     <div
       className={classNames(
@@ -44,13 +54,11 @@ export const Cart: FC = () => {
           <div className="col-9">
             <div className="d-flex justify-content-between align-items-center my-2">
               <h6 className="my-0 text-nowrap">Total Cards</h6>
-              <h6 className="my-0 text-nowrap text-danger">{cartItems.length}</h6>
+              <h6 className="my-0 text-nowrap text-danger">{totalCount}</h6>
             </div>
             <div className="d-flex justify-content-between align-items-center my-2">
               <h5 className="my-0 text-nowrap">Total Price</h5>
-              <h5 className="my-0 text-nowrap text-danger">
-                ${cartItems.reduce((prev, el) => prev + el.price, 0)}
-              </h5>
+              <h5 className="my-0 text-nowrap text-danger">${formatMoney(totalPrice)}</h5>
             </div>
           </div>
         </div>
