@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from "axios";
 import classNames from "classnames";
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
-import React, { MouseEventHandler, useCallback, useEffect, useState } from "react";
+import React, { MouseEventHandler, useCallback, useContext, useEffect, useState } from "react";
 import { OnSelectHandlerType, PageLayout, PokemonCard, PokemonCardModel } from "../components";
+import DataContext from "../context/DataContext";
 import styles from "../styles/Home.module.scss";
 
 export const fetchCards = async (
@@ -43,13 +44,13 @@ interface HomePageProps {
 }
 
 const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
+  const { cartItems, setCartItems } = useContext(DataContext);
+
   const [isInit, setIsInit] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [cards, setCards] = useState<any[] | undefined>(data);
   const [cardsError, setCardsError] = useState<AxiosResponse | undefined>(error);
-
-  const [cartItems, setCartItems] = useState<PokemonCardModel[]>([]);
 
   useEffect(() => {
     if (!isInit) {
@@ -72,13 +73,16 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
     setCurrentPage((old) => old + 1);
   }, []);
 
-  const onCardSelect: OnSelectHandlerType = useCallback<OnSelectHandlerType>((crd, selectType) => {
-    if (selectType === "select") {
-      setCartItems((old) => [...old, crd]);
-    } else {
-      setCartItems((old) => old.filter((el) => el.id !== crd.id));
-    }
-  }, []);
+  const onCardSelect: OnSelectHandlerType = useCallback<OnSelectHandlerType>(
+    (crd, selectType) => {
+      if (selectType === "select") {
+        setCartItems((old: PokemonCardModel[]) => [...old, crd]);
+      } else {
+        setCartItems((old: PokemonCardModel[]) => old.filter((el) => el.id !== crd.id));
+      }
+    },
+    [setCartItems],
+  );
 
   return (
     <PageLayout hideFooter={Boolean(cardsError)}>
