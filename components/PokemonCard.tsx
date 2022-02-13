@@ -1,21 +1,26 @@
 import classNames from "classnames";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, MouseEventHandler, useCallback } from "react";
 import styles from "../styles/PokemonCard.module.scss";
 import { formatMoney } from "../utils/functions";
 
-type OnSelectHandlerType = (card: PokemonCardProps) => void;
-
-interface PokemonCardProps {
+export interface PokemonCardModel {
   id: string;
   name: string;
   rarity: string;
   price: number;
   total: number;
   image: { small: string; large: string };
+}
+
+type SelectOrDeselect = "select" | "unselect";
+
+export type OnSelectHandlerType = (card: PokemonCardModel, selectType: SelectOrDeselect) => void;
+
+interface PokemonCardProps extends PokemonCardModel {
   className?: string | undefined;
-  selected?: boolean;
-  onSelect?: OnSelectHandlerType;
+  selected?: boolean | undefined;
+  onSelect?: OnSelectHandlerType | undefined;
 }
 
 export const PokemonCard: FC<PokemonCardProps> = ({
@@ -27,7 +32,17 @@ export const PokemonCard: FC<PokemonCardProps> = ({
   total,
   image,
   selected,
+  onSelect,
 }) => {
+  const handleSelect = useCallback<MouseEventHandler<HTMLButtonElement>>(
+    (e) => {
+      if (onSelect && typeof onSelect === "function") {
+        onSelect({ id, name, rarity, price, image, total }, selected ? "unselect" : "select");
+      }
+    },
+    [onSelect, selected, id, name, rarity, price, image, total],
+  );
+
   return (
     <div
       className={classNames(
@@ -46,9 +61,19 @@ export const PokemonCard: FC<PokemonCardProps> = ({
         <span>{total} left</span>
       </div>
       {selected ? (
-        <button className={classNames(styles.cardBtn, "btn btn-dark px-4")}>Selected</button>
+        <button
+          className={classNames(styles.cardBtn, "btn btn-dark ps-3 pe-4")}
+          onClick={handleSelect}
+        >
+          <i className="bi bi-check2 me-2"></i>Selected
+        </button>
       ) : (
-        <button className={classNames(styles.cardBtn, "btn btn-warning px-4")}>Select Card</button>
+        <button
+          className={classNames(styles.cardBtn, "btn btn-warning px-4")}
+          onClick={handleSelect}
+        >
+          Select Card
+        </button>
       )}
     </div>
   );

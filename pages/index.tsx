@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import classNames from "classnames";
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import React, { MouseEventHandler, useCallback, useEffect, useState } from "react";
-import { PageLayout, PokemonCard } from "../components";
+import { OnSelectHandlerType, PageLayout, PokemonCard, PokemonCardModel } from "../components";
 import styles from "../styles/Home.module.scss";
 
 export const fetchCards = async (
@@ -21,7 +21,11 @@ export const fetchCards = async (
     );
     return { data: pageData.data };
   } catch (err: any) {
-    return { error: JSON.parse(JSON.stringify(err.response)) };
+    return {
+      error: err.response
+        ? JSON.parse(JSON.stringify(err.response))
+        : { status: err.status, message: err.message },
+    };
   }
 };
 
@@ -45,6 +49,8 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
   const [cards, setCards] = useState<any[] | undefined>(data);
   const [cardsError, setCardsError] = useState<AxiosResponse | undefined>(error);
 
+  const [cartItems, setCartItems] = useState<PokemonCardModel[]>([]);
+
   useEffect(() => {
     if (!isInit) {
       setLoading(true);
@@ -66,6 +72,14 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
     setCurrentPage((old) => old + 1);
   }, []);
 
+  const onCardSelect: OnSelectHandlerType = useCallback<OnSelectHandlerType>((crd, selectType) => {
+    if (selectType === "select") {
+      setCartItems((old) => [...old, crd]);
+    } else {
+      setCartItems((old) => old.filter((el) => el.id !== crd.id));
+    }
+  }, []);
+
   return (
     <PageLayout hideFooter={Boolean(cardsError)}>
       {!cardsError ? (
@@ -85,6 +99,8 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
                     rarity={card.rarity}
                     price={card.cardmarket.prices.averageSellPrice}
                     total={card.set.total}
+                    selected={Boolean(cartItems.find((el) => el.id === card.id))}
+                    onSelect={onCardSelect}
                   />
                 </div>
               ))}
