@@ -2,7 +2,13 @@ import axios, { AxiosResponse } from "axios";
 import classNames from "classnames";
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import React, { MouseEventHandler, useCallback, useContext, useEffect, useState } from "react";
-import { OnSelectHandlerType, PageLayout, PokemonCard, PokemonCardModel } from "../components";
+import {
+  Cart,
+  OnSelectHandlerType,
+  PageLayout,
+  PokemonCard,
+  PokemonCardModel,
+} from "../components";
 import DataContext from "../context/DataContext";
 import styles from "../styles/Home.module.scss";
 
@@ -86,9 +92,10 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
 
   return (
     <PageLayout hideFooter={Boolean(cardsError)}>
+      <Cart />
       {!cardsError ? (
         cards && cards.length > 0 ? (
-          <div className={styles.HomePage}>
+          <div className={classNames(styles.HomePage, styles.limitHeight)}>
             <div className={classNames("row justify-content-evenly px-lg-5")}>
               {cards.map((card: any) => (
                 <div

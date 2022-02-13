@@ -2,3 +2,9 @@
   padding-top: 120px;
   padding-bottom: 110px;
 }
+
+.limitHeight {
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
