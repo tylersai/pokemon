@@ -11,6 +11,7 @@ export interface PokemonCardModel {
   price: number;
   total: number;
   image: { small: string; large: string };
+  count?: number;
 }
 
 type SelectOrDeselect = "select" | "unselect";

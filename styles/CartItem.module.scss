@@ -2,3 +2,16 @@
   font-size: 12px;
   font-weight: 300;
 }
+
+.upDownBtn {
+  font-size: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 2px;
+  padding-right: 2px;
+  border: none;
+  background-color: var(--bs-light);
+  &:hover {
+    background-color: #f4f4f4;
+  }
+}

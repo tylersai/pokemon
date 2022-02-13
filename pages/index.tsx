@@ -14,6 +14,7 @@ import styles from "../styles/Home.module.scss";
 
 export const fetchCards = async (
   baseUrl: string | undefined = process.env.POKEMON_API_URL,
+  apiKey: string | undefined = process.env.POKEMON_API_KEY,
   page: number = 1,
   pageSize: number = 12,
 ): Promise<{ data?: any; error?: any }> => {
@@ -22,7 +23,7 @@ export const fetchCards = async (
       `${baseUrl}/cards?pageSize=${pageSize}&page=${page}`,
       {
         headers: {
-          "X-Api-Key": process.env.POKEMON_API_KEY as string,
+          "X-Api-Key": apiKey as string,
         },
       },
     );
@@ -31,7 +32,7 @@ export const fetchCards = async (
     return {
       error: err.response
         ? JSON.parse(JSON.stringify(err.response))
-        : { status: err.status, message: err.message },
+        : { status: err.status || 500, message: err.message || "Unknown error occurred" },
     };
   }
 };
@@ -39,7 +40,11 @@ export const fetchCards = async (
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const res = await fetchCards();
   return {
-    props: { ...res, baseUrl: process.env.POKEMON_API_URL },
+    props: {
+      ...res,
+      baseUrl: process.env.POKEMON_API_URL || null,
+      apiKey: process.env.POKEMON_API_KEY || null,
+    },
   };
 };
 
@@ -47,9 +52,10 @@ interface HomePageProps {
   data?: any[] | undefined;
   error?: AxiosResponse | undefined;
   baseUrl: string;
+  apiKey: string;
 }
 
-const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
+const Home: NextPage<HomePageProps> = ({ data, error, baseUrl, apiKey }) => {
   const { cartItems, setCartItems } = useContext(DataContext);
 
   const [isInit, setIsInit] = useState<boolean>(true);
@@ -61,7 +67,7 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
   useEffect(() => {
     if (!isInit) {
       setLoading(true);
-      fetchCards(baseUrl, currentPage)
+      fetchCards(baseUrl, apiKey, currentPage)
         .then((res) => {
           setLoading(false);
           if (res.error) {
@@ -72,7 +78,7 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
         })
         .catch((err) => setLoading(false));
     }
-  }, [baseUrl, currentPage, isInit]);
+  }, [baseUrl, apiKey, currentPage, isInit]);
 
   const loadMore = useCallback<MouseEventHandler<HTMLButtonElement>>(() => {
     setIsInit(false);
@@ -82,7 +88,7 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
   const onCardSelect: OnSelectHandlerType = useCallback<OnSelectHandlerType>(
     (crd, selectType) => {
       if (selectType === "select") {
-        setCartItems((old: PokemonCardModel[]) => [...old, crd]);
+        setCartItems((old: PokemonCardModel[]) => [...old, { ...crd, count: 1 }]);
       } else {
         setCartItems((old: PokemonCardModel[]) => old.filter((el) => el.id !== crd.id));
       }
