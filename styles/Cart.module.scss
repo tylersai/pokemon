@@ -4,15 +4,34 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.2);
   padding-bottom: 68px;
+  transition: var(--transition);
 }
 
 .Cart {
+  min-width: 400px;
   border-radius: 16px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);
   padding: 2rem;
-  padding-bottom: 78px;
   max-height: 70vh;
   overflow-y: auto;
+}
+
+.clearAllBtn {
+  position: relative;
+  font-size: 13px;
+  font-weight: 300;
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: var(--bs-danger);
+    height: 1px;
+    bottom: 2px;
+    left: 0;
+    right: -1px;
+  }
 }

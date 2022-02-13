@@ -12,6 +12,7 @@ export const Footer: React.FC = () => {
       <button
         className="btn btn-primary position-relative"
         onClick={() => cartItems && cartItems.length > 0 && setOpenCart((prev) => !prev)}
+        disabled={!cartItems || cartItems.length === 0}
       >
         <i className="bi bi-cart me-2"></i>View Cart
         {cartItems && cartItems.length > 0 && (
