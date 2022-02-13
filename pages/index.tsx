@@ -40,19 +40,24 @@ interface HomePageProps {
 
 const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
   const [isInit, setIsInit] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [cards, setCards] = useState<any[] | undefined>(data);
   const [cardsError, setCardsError] = useState<AxiosResponse | undefined>(error);
 
   useEffect(() => {
     if (!isInit) {
-      fetchCards(baseUrl, currentPage).then((res) => {
-        if (res.error) {
-          setCardsError(res.error);
-        } else {
-          setCards((old) => [...(old || []), ...res.data]);
-        }
-      });
+      setLoading(true);
+      fetchCards(baseUrl, currentPage)
+        .then((res) => {
+          setLoading(false);
+          if (res.error) {
+            setCardsError(res.error);
+          } else {
+            setCards((old) => [...(old || []), ...res.data]);
+          }
+        })
+        .catch((err) => setLoading(false));
     }
   }, [baseUrl, currentPage, isInit]);
 
@@ -85,8 +90,9 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl }) => {
               ))}
             </div>
             <div className="d-flex justify-content-center">
-              <button className="btn" onClick={loadMore}>
-                <i className="bi bi-search me-2"></i>Load More
+              <button className="btn letter-spacing-1" onClick={loadMore} disabled={loading}>
+                <i className="bi bi-arrow-down me-2"></i>
+                {loading ? "Loading..." : "Load More"}
               </button>
             </div>
           </div>
