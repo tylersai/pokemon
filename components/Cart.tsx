@@ -20,6 +20,7 @@ export const Cart: FC = () => {
     <div
       className={classNames(
         styles.cartOverlay,
+        "appear",
         openCart ? "d-flex justify-content-center align-items-end" : "d-none",
       )}
       onClick={() => setOpenCart(false)}
