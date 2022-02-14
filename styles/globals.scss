@@ -50,6 +50,10 @@ input {
   animation: fadeIn 600ms 50ms ease-out forwards;
 }
 
+.fadeOut {
+  animation: fadeIn 300ms 50ms ease-out reverse forwards;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
