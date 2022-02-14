@@ -81,7 +81,7 @@ export const Filter: FC<FilterProps> = ({
           value={cardType}
           onChange={(e) => setCardType(e.target.value)}
         >
-          <option hidden selected disabled value="">
+          <option hidden disabled value="">
             Type
           </option>
           {types.map((el) => (
@@ -96,7 +96,7 @@ export const Filter: FC<FilterProps> = ({
           value={rarity}
           onChange={(e) => setRarity(e.target.value)}
         >
-          <option hidden selected disabled value="">
+          <option hidden disabled value="">
             Rarity
           </option>
           {rarities.map((el) => (
@@ -111,7 +111,7 @@ export const Filter: FC<FilterProps> = ({
           value={cardSet?.id}
           onChange={(e) => setCardSet(sets.find((el) => el?.id === e.target.value) || null)}
         >
-          <option hidden selected disabled value="null">
+          <option hidden disabled value="null">
             Set
           </option>
           {sets.map((el) => (
