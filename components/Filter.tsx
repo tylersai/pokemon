@@ -174,7 +174,7 @@ export const Filter: FC<FilterProps> = ({
           <div
             className={classNames(
               styles.filterIndicatorWrapper,
-              "d-flex align-items-center px-3 flex-wrap",
+              "d-flex align-items-center px-2 px-sm-3 flex-wrap",
             )}
           >
             {name && name.trim() && (

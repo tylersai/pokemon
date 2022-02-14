@@ -18,12 +18,12 @@
     letter-spacing: 1px;
   }
   & > input {
-    width: 150px;
-    max-width: 150px;
+    width: 130px;
+    max-width: 130px;
   }
   & > select {
-    width: 90px;
-    max-width: 90px;
+    width: 83px;
+    max-width: 83px;
   }
 }
 
@@ -32,9 +32,9 @@
 }
 
 .filterIndicatorWrapper {
-  width: 420px;
-  max-width: 420px;
-  gap: 8px;
+  width: 390px;
+  max-width: 390px;
+  gap: 6px;
   & > span {
     opacity: 0.85;
     background-color: #fff;
@@ -42,5 +42,42 @@
     font-size: 12px;
     font-weight: 200;
     line-height: 1;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .filterGroup {
+    & > input {
+      width: 150px;
+      max-width: 150px;
+    }
+    & > select {
+      width: 90px;
+      max-width: 90px;
+    }
+  }
+  .filterIndicatorWrapper {
+    width: 420px;
+    max-width: 420px;
+    gap: 8px;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .filterGroup {
+    & > input {
+      width: 170px;
+      max-width: 170px;
+    }
+    & > select {
+      width: 100px;
+      max-width: 100px;
+    }
+  }
+  .filterIndicatorWrapper {
+    width: 470px;
+    max-width: 470px;
   }
 }
