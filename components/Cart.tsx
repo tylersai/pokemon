@@ -19,7 +19,6 @@ export const Cart: FC = () => {
   return (
     <div
       className={classNames(
-        "position-absolute",
         styles.cartOverlay,
         openCart ? "d-flex justify-content-center align-items-end" : "d-none",
       )}

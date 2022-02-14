@@ -1,12 +1,20 @@
 .cartOverlay {
+  position: fixed;
   z-index: 3;
   top: 0;
-  height: 100vh;
+  bottom: 0;
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.2);
-  padding-bottom: 68px;
+  padding-bottom: 43px;
   transition: var(--transition);
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .cartOverlay {
+    padding-bottom: 68px;
+  }
 }
 
 .Cart {
