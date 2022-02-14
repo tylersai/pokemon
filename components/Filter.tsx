@@ -1,6 +1,15 @@
 import axios, { AxiosRequestConfig } from "axios";
 import classNames from "classnames";
-import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import React, {
+  ChangeEventHandler,
+  Dispatch,
+  FC,
+  KeyboardEventHandler,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import styles from "../styles/Filter.module.scss";
 
 export type CardSetType = { id: string; name: string };
@@ -16,10 +25,11 @@ interface FilterProps {
   setCardSet: Dispatch<SetStateAction<string>>;
   baseUrl: string;
   apiKey: string;
+  setIsAppend: Dispatch<SetStateAction<boolean>>;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
 }
 
 export const Filter: FC<FilterProps> = ({
-  name,
   setName,
   cardType,
   setCardType,
@@ -29,6 +39,8 @@ export const Filter: FC<FilterProps> = ({
   setRarity,
   baseUrl,
   apiKey,
+  setIsAppend,
+  setCurrentPage,
 }) => {
   const [_name, _setName] = useState("");
   const [types, setTypes] = useState<string[]>([]);
@@ -60,6 +72,44 @@ export const Filter: FC<FilterProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const onNameKeyUp = useCallback<KeyboardEventHandler<HTMLInputElement>>(
+    (e) => {
+      if (e.key === "Enter") {
+        setIsAppend(false);
+        setCurrentPage(1);
+        setName(e.currentTarget.value);
+      }
+    },
+    [setName, setCurrentPage, setIsAppend],
+  );
+
+  const onTypeChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
+    (e) => {
+      setIsAppend(false);
+      setCurrentPage(1);
+      setCardType(e.target.value);
+    },
+    [setCardType, setCurrentPage, setIsAppend],
+  );
+
+  const onRarityChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
+    (e) => {
+      setIsAppend(false);
+      setCurrentPage(1);
+      setRarity(e.target.value);
+    },
+    [setRarity, setCurrentPage, setIsAppend],
+  );
+
+  const onSetChange = useCallback<ChangeEventHandler<HTMLSelectElement>>(
+    (e) => {
+      setIsAppend(false);
+      setCurrentPage(1);
+      setCardSet(e.target.value);
+    },
+    [setCardSet, setCurrentPage, setIsAppend],
+  );
+
   return (
     <div className="d-flex justify-content-center py-2">
       <div
@@ -74,16 +124,15 @@ export const Filter: FC<FilterProps> = ({
           placeholder="Name..."
           value={_name}
           onChange={(e) => _setName(e.target.value)}
+          onKeyUp={onNameKeyUp}
         />
         <select
           className={classNames(styles.borderRight, "form-select text-secondary")}
           placeholder="Type"
           value={cardType}
-          onChange={(e) => setCardType(e.target.value)}
+          onChange={onTypeChange}
         >
-          <option hidden disabled value="">
-            Type
-          </option>
+          <option value="">Type</option>
           {types.map((el) => (
             <option key={el} value={el}>
               {el}
@@ -94,11 +143,9 @@ export const Filter: FC<FilterProps> = ({
           className={classNames(styles.borderRight, "form-select text-secondary")}
           placeholder="Rarity"
           value={rarity}
-          onChange={(e) => setRarity(e.target.value)}
+          onChange={onRarityChange}
         >
-          <option hidden disabled value="">
-            Rarity
-          </option>
+          <option value="">Rarity</option>
           {rarities.map((el) => (
             <option key={el} value={el}>
               {el}
@@ -109,11 +156,9 @@ export const Filter: FC<FilterProps> = ({
           className="form-select text-secondary"
           placeholder="Set"
           value={cardSet}
-          onChange={(e) => setCardSet(e.target.value)}
+          onChange={onSetChange}
         >
-          <option hidden disabled value="">
-            Set
-          </option>
+          <option value="">Set</option>
           {sets.map((el) => (
             <option key={el?.id} value={el?.id}>
               {el?.name}

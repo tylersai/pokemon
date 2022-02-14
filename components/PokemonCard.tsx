@@ -53,8 +53,8 @@ export const PokemonCard: FC<PokemonCardProps> = ({
       )}
     >
       <Image src={image.small} width={220} height={308} alt="Pokemon Card" />
-      <h4 className="mt-3 mb-1">{name}</h4>
-      <small className="text-primary mt-1 mb-3">{rarity}</small>
+      <h4 className="mt-3 mb-1 text-center">{name}</h4>
+      <small className="text-primary mt-1 mb-3 text-center">{rarity}</small>
       <div
         className={classNames(styles.gapPT, "d-flex justify-content-center mb-3 text-secondary")}
       >
