@@ -6,6 +6,7 @@ interface PageLayoutProps {
   CommonHeadComp?: React.ReactElement;
   hideHeader?: boolean;
   hideFooter?: boolean;
+  loading?: boolean;
   notFullHeight?: boolean;
 }
 
@@ -14,12 +15,13 @@ export const PageLayout: FC<PageLayoutProps> = ({
   children,
   hideHeader,
   hideFooter,
+  loading,
   notFullHeight,
 }) => {
   return (
     <div className="PageLayout">
       {CommonHeadComp}
-      {!hideHeader && <Navbar />}
+      {!hideHeader && <Navbar loading={loading} />}
       <main
         className={classNames(
           "container-fluid d-flex flex-column align-items-stretch",

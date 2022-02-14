@@ -9,12 +9,37 @@
   & h1 {
     font-weight: 600;
     font-size: 24px;
+    transform: translate(0, -4px);
   }
 }
 
 .logoWrapper {
   border-radius: 50%;
   bottom: -61px;
+  // bottom: -65px;
   z-index: -1;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.logoWrapperLoading {
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    z-index: 1;
+    border-radius: 50%;
+    border: 3px solid var(--bs-secondary);
+    border-top: 3px solid transparent;
+    animation: rotate 1s infinite;
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
 }

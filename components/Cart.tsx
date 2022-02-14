@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { FC, useContext, useEffect, useLayoutEffect, useMemo, useState } from "react";
+import React, { FC, useContext, useEffect, useMemo, useState } from "react";
 import { CartItem } from ".";
 import DataContext from "../context/DataContext";
 import styles from "../styles/Cart.module.scss";
@@ -11,7 +11,7 @@ export const Cart: FC = () => {
   const [paid, setPaid] = useState<boolean>(false);
   const [showCheck, setShowCheck] = useState<boolean>(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let t1: any = null;
     let t2: any = null;
     let t3: any = null;

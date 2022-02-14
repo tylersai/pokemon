@@ -1,17 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import classNames from "classnames";
 import type { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
-import React, {
-  Dispatch,
-  FC,
-  MouseEventHandler,
-  SetStateAction,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import React, { FC, MouseEventHandler, useCallback, useContext, useEffect, useState } from "react";
 import {
   Cart,
   Filter,
@@ -165,7 +155,7 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl, apiKey }) => {
   );
 
   return (
-    <PageLayout hideFooter={Boolean(cardsError)}>
+    <PageLayout hideFooter={Boolean(cardsError)} loading={loading}>
       <Cart />
       {!cardsError ? (
         cards ? (

@@ -3,7 +3,7 @@ import { FC } from "react";
 import classNames from "classnames";
 import styles from "../styles/Navbar.module.scss";
 
-export const Navbar: FC = () => {
+export const Navbar: FC<{ loading?: boolean | undefined }> = ({ loading }) => {
   return (
     <header
       className={classNames(
@@ -16,6 +16,7 @@ export const Navbar: FC = () => {
         <div
           className={classNames(
             styles.logoWrapper,
+            loading && styles.logoWrapperLoading,
             "position-absolute d-flex bg-white align-items-center justify-content-center p-3",
           )}
         >
