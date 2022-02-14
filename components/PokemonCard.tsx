@@ -52,7 +52,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({
         "fadeIn d-flex flex-column align-items-center px-5",
       )}
     >
-      <Image src={image.small} width={220} height={308} alt="Pokemon Card" />
+      <Image src={image.large} width={220} height={308} alt="Pokemon Card" />
       <h4 className="mt-3 mb-1 text-center">{name}</h4>
       <small className="text-primary mt-1 mb-3 text-center">{rarity}</small>
       <div
