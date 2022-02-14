@@ -78,7 +78,6 @@ export const Filter: FC<FilterProps> = ({
         <select
           className={classNames(styles.borderRight, "form-select text-secondary")}
           placeholder="Type"
-          disabled={types.length === 0}
           value={cardType}
           onChange={(e) => setCardType(e.target.value)}
         >
@@ -94,7 +93,6 @@ export const Filter: FC<FilterProps> = ({
         <select
           className={classNames(styles.borderRight, "form-select text-secondary")}
           placeholder="Rarity"
-          disabled={rarities.length === 0}
           value={rarity}
           onChange={(e) => setRarity(e.target.value)}
         >
@@ -110,7 +108,6 @@ export const Filter: FC<FilterProps> = ({
         <select
           className="form-select text-secondary"
           placeholder="Set"
-          disabled={sets.length === 0}
           value={cardSet?.id}
           onChange={(e) => setCardSet(sets.find((el) => el?.id === e.target.value) || null)}
         >
