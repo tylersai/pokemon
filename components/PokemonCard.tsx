@@ -49,7 +49,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({
       className={classNames(
         className,
         styles.PokemonCard,
-        "d-flex flex-column align-items-center px-5",
+        "fadeIn d-flex flex-column align-items-center px-5",
       )}
     >
       <Image src={image.small} width={220} height={308} alt="Pokemon Card" />

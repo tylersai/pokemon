@@ -45,3 +45,18 @@ input {
 .letter-spacing-1 {
   letter-spacing: 1px;
 }
+
+.fadeIn {
+  animation: fadeIn 600ms 50ms ease-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate(0, 24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
