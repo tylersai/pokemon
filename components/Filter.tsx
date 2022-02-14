@@ -3,7 +3,7 @@ import classNames from "classnames";
 import React, { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import styles from "../styles/Filter.module.scss";
 
-export type CardSetType = { id: string; name: string } | null;
+export type CardSetType = { id: string; name: string };
 
 interface FilterProps {
   name: string;
@@ -12,8 +12,8 @@ interface FilterProps {
   setCardType: Dispatch<SetStateAction<string>>;
   rarity: string;
   setRarity: Dispatch<SetStateAction<string>>;
-  cardSet: CardSetType;
-  setCardSet: Dispatch<SetStateAction<CardSetType>>;
+  cardSet: string;
+  setCardSet: Dispatch<SetStateAction<string>>;
   baseUrl: string;
   apiKey: string;
 }
@@ -108,10 +108,10 @@ export const Filter: FC<FilterProps> = ({
         <select
           className="form-select text-secondary"
           placeholder="Set"
-          value={cardSet?.id}
-          onChange={(e) => setCardSet(sets.find((el) => el?.id === e.target.value) || null)}
+          value={cardSet}
+          onChange={(e) => setCardSet(e.target.value)}
         >
-          <option hidden disabled value="null">
+          <option hidden disabled value="">
             Set
           </option>
           {sets.map((el) => (

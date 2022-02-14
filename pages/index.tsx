@@ -68,7 +68,7 @@ const Home: NextPage<HomePageProps> = ({ data, error, baseUrl, apiKey }) => {
 
   const [name, setName] = useState("");
   const [cardType, setCardType] = useState("");
-  const [cardSet, setCardSet] = useState<CardSetType>(null);
+  const [cardSet, setCardSet] = useState("");
   const [rarity, setRarity] = useState("");
 
   useEffect(() => {
